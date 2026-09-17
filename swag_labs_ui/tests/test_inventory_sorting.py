@@ -1,7 +1,7 @@
 import pytest
 from playwright.sync_api import Page
-from pages.login_page import LoginPage
-from pages.inventory_page import InventoryPage
+from swag_labs_ui.pages.login_page import LoginPage
+from swag_labs_ui.pages.inventory_page import InventoryPage
 
 
 @pytest.mark.parametrize(

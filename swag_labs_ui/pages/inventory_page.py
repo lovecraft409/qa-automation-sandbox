@@ -22,6 +22,8 @@ class InventoryPage:
 
         self.react_burger_menu_button = page.get_by_role("button", name="Open Menu")
 
+        self.logout_link = page.locator("[data-test='logout-sidebar-link']")
+
         self.cart_badge = page.locator("[data-test='shopping-cart-badge']")
 
         self.sort_dropdown = page.locator(".product_sort_container")
@@ -47,7 +49,7 @@ class InventoryPage:
 
     def logout(self):
         self.react_burger_menu_button.click()
-        self.page.get_by_role("link", name="Logout").click()
+        self.logout_link.click()
 
     def verify_cart_count(self, expected_count: str):
         expect(self.cart_badge).to_have_text(expected_count)
