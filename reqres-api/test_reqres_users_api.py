@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-api_key = os.getenv("REQRES_API_KEY")
+api_key = os.getenv("REQRES_API_KEY", "")
 
 
 @pytest.mark.parametrize(
