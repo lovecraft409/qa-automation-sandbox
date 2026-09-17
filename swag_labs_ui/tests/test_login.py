@@ -1,6 +1,6 @@
 import pytest
 from playwright.sync_api import Page
-from pages.login_page import LoginPage
+from swag_labs_ui.pages.login_page import LoginPage
 
 USERS_TO_TEST = [
     "standard_user",
