@@ -1,11 +1,7 @@
 import pytest
 import requests
-import os
-from dotenv import load_dotenv
 
-load_dotenv()
-
-api_key = os.getenv("REQRES_API_KEY", "")
+BASE_URL = "https://reqres.in/api"
 
 
 @pytest.mark.parametrize(
@@ -16,13 +12,12 @@ api_key = os.getenv("REQRES_API_KEY", "")
         ("missing_user@reqres.in", "password", 400),
     ],
 )
-def test_login_status_codes(email, password, expected_status):
-    url = "https://reqres.in/api/login"
-    payload = {"email": email, "password": password}
-    headers = {"x-api-key": api_key}
-    assert api_key, "REQRES_API_KEY is not set"
-
-    response = requests.post(url, json=payload, headers=headers)
+def test_login(headers, email, password, expected_status):
+    response = requests.post(
+        f"{BASE_URL}/login",
+        json={"email": email, "password": password},
+        headers=headers,
+    )
 
     assert response.status_code == expected_status
 
