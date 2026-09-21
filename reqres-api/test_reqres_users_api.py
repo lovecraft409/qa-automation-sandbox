@@ -1,12 +1,7 @@
 import pytest
 import requests
-import os
 
-from dotenv import load_dotenv
-
-load_dotenv()
-
-api_key = os.getenv("REQRES_API_KEY", "")
+BASE_URL = "https://reqres.in/api"
 
 
 @pytest.mark.parametrize(
@@ -16,13 +11,8 @@ api_key = os.getenv("REQRES_API_KEY", "")
         (999, 404),
     ],
 )
-def test_user_status_codes(user_id, expected_status):
-    url = f"https://reqres.in/api/users/{user_id}"
-
-    headers = {"x-api-key": api_key}
-    assert api_key, "REQRES_API_KEY is not set"
-
-    response = requests.get(url, headers=headers)
+def test_get_user(headers, user_id, expected_status):
+    response = requests.get(f"{BASE_URL}/users/{user_id}", headers=headers)
 
     assert response.status_code == expected_status
 
